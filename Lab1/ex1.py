@@ -18,4 +18,5 @@ def main():
     print(find_gcd(arr))
 
 
-main()
+if __name__ == '__main__':
+    main()

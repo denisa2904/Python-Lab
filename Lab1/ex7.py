@@ -15,4 +15,5 @@ def extract_number(phrase):
 #     print(extract_number(phrase))
 #
 #
-# main()
+# if __name__ == '__main__':
+#     main()

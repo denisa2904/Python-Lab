@@ -10,4 +10,5 @@ def is_palindrome(num):
 #     print(is_palindrome(num))
 #
 #
-# main()
+# if __name__ == '__main__':
+#     main()

@@ -20,4 +20,5 @@ def main():
     print(most_common_letter(phrase))
 
 
-main()
+if __name__ == '__main__':
+    main()

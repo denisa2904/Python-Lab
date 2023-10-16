@@ -12,4 +12,5 @@ def main():
     print(count_words(phrase))
 
 
-main()
+if __name__ == '__main__':
+    main()

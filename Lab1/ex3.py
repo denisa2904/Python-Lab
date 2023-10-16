@@ -13,4 +13,5 @@ def main():
     # print(string_occurrence("ab", "abcabcabc"))
 
 
-main()
+if __name__ == '__main__':
+    main()

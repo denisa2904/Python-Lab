@@ -35,4 +35,5 @@ def main():
     print_spiral(matrix)
 
 
-main()
+if __name__ == '__main__':
+    main()

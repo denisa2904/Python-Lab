@@ -16,4 +16,5 @@ def main():
     print(convert_string(old_string))
 
 
-main()
+if __name__ == '__main__':
+    main()

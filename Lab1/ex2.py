@@ -10,5 +10,5 @@ def main():
     word = input("Enter a string: ")
     print(count_vowels(word))
 
-
-main()
+if __name__ == '__main__':
+    main()

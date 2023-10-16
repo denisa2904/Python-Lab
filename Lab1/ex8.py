@@ -12,4 +12,5 @@ def not_null_bits(num):
 #     print(not_null_bits(num))
 #
 #
-# main()
+# if __name__ == '__main__':
+#     main()
