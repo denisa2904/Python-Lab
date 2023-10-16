@@ -4,7 +4,7 @@ def convert_string(old_string):
         if i.isupper():
             if len(new_string) == 0:
                 new_string += i.lower()
-            elif new_string[len(new_string)-1].islower():
+            else:
                 new_string += "_" + i.lower()
         else:
             new_string += i
