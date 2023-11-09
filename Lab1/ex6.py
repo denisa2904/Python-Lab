@@ -1,8 +1,5 @@
 def is_palindrome(num):
-    reverse_num = num[::-1]
-    if num == reverse_num:
-        return True
-    return False
+    return num == num[::-1]
 
 
 def main():

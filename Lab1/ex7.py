@@ -10,10 +10,10 @@ def extract_number(phrase):
     return number
 
 
-# def main():
-#     phrase = input("Enter a phrase: ")
-#     print(extract_number(phrase))
-#
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    phrase = input("Enter a phrase: ")
+    print(extract_number(phrase))
+
+
+if __name__ == '__main__':
+    main()

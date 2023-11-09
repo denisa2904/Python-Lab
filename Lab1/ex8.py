@@ -7,10 +7,10 @@ def not_null_bits(num):
     return cnt
 
 
-# def main():
-#     num = int(input("Enter a number: "))
-#     print(not_null_bits(num))
-#
-#
-# if __name__ == '__main__':
-#     main()
+def main():
+    num = int(input("Enter a number: "))
+    print(not_null_bits(num))
+
+
+if __name__ == '__main__':
+    main()
