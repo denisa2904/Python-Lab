@@ -37,6 +37,8 @@ class Rectangle(Shape):
 class Triangle(Shape):
     def __init__(self, side1, side2, side3):
         super().__init__()
+        if side1 + side2 < side3 or side1 + side3 < side2 or side2 + side3 < side1:
+            raise RuntimeError('Not a triangle')
         self.side1 = side1
         self.side2 = side2
         self.side3 = side3

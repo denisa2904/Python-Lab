@@ -1,0 +1,31 @@
+A key component of computer security is access control, which attempts to govern and manage an entity's rights of access to resources inside a system. 
+
+User:
+Entities requesting access to resources are often referred to as users or subjects in the access control matrix concept. Users or processes with certain privileges and access rights are the subjects in the Linux ACL implementation.
+
+Object:
+In the access control matrix approach, resources like files and folders that are being accessed or protected are represented as objects. Under Linux, the resources that users or processes want to interact with are represented by files and directories in the file system.
+
+Rights:
+The read, write, and execute permissions, among other particular actions or permissions that a subject can carry out on an item, are critical components of the access control matrix paradigm. These ideas are translated into explicit permissions given to users or groups for particular files or directories via Linux ACLs.
+
+Atomic operations:
+Atomic activities are basic operations that are inseparable from a security standpoint in both models. These operations establish the granularity of access, whether it's a single read or write action in the access control matrix or reading, writing, or running a program in Linux ACLs.
+
+Command:
+A crucial part of the access control matrix paradigm is the command or action that a subject wants to take on an object. This corresponds to shell commands or system calls that are made to interact with files or directories by users or processes in Linux ACLs.
+
+State:
+Linux ACLs reflect the current state of the system's permissions and access rights, which is referred to as the "state" in the access control matrix paradigm. The status contains all of the users' or groups' current file and directory permissions at any one time.
+
+State transition:
+The dynamic nature of Linux ACLs is aligned with changes in the access control matrix caused by updates or revisions to permissions. State transitions are the gradual adjustments made by administrators or users to a file's or directory's permissions in response to changing security needs.
+
+Leak of rights:
+Both models recognize the possibility of a "leak of rights," in which security is jeopardized by unapproved access or accidental permission changes. This can happen with Linux ACLs if there are accidental or incorrectly configured ACLs that permit unauthorized access to files or directories.
+
+In conclusion, Linux ACLs offer a practical implementation of these notions in the context of file and directory permissions, while the access control matrix model offers a theoretical foundation for understanding access control. The manner that Linux's ACLs correspond with the key elements of the access control matrix paradigm demonstrates the harmonious interaction of theory and practice.
+
+
+
+
