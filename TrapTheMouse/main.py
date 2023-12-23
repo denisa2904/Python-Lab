@@ -1,16 +1,32 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import pygame
+from hexagon_matrix import draw_hexagon_matrix
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+LIGHT_GREEN = (43, 175, 98)
+
+width, height = 900, 700
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def main():
+    pygame.init()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    screen = pygame.display.set_mode((width, height))
+    pygame.display.set_caption("Trap the Mouse")
+
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+
+        screen.fill(LIGHT_GREEN)
+        draw_hexagon_matrix(screen, 11, 11)
+
+        pygame.display.flip()
+        pygame.time.Clock().tick(30)
+
+    pygame.quit()
+
+
+if __name__ == "__main__":
+    main()
