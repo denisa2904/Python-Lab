@@ -1,3 +1,8 @@
+"""
+    Main file for the game Trap the Mouse.
+    This script draws the window and runs the game.
+    Usage: python main.py
+"""
 import pygame
 from hexagon_matrix import draw_hexagon_matrix
 

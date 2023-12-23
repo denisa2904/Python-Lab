@@ -1,9 +1,19 @@
+"""
+    This module contains the function to draw a matrix of hexagons.
+"""
 from hexagon import Hexagon
 
 width, height = 900, 700
 
 
 def draw_hexagon_matrix(surface, rows, cols):
+    """
+    Draws a matrix of hexagons.
+    :param surface: surface of the pygame window
+    :param rows: number of rows in the matrix
+    :param cols: number of columns in the matrix
+    :return: draws a matrix of hexagons
+    """
     hexagon = Hexagon(25)
     for row in range(rows):
         for col in range(cols):
