@@ -3,9 +3,6 @@ import os
 
 
 def count_files(directory):
-    if not os.path.isdir(directory):
-        print("Invalid directory")
-        sys.exit(1)
 
     extension_freq = {}
     for file in os.listdir(directory):
@@ -26,9 +23,26 @@ def count_files(directory):
 
 def main():
     if len(sys.argv) != 2:
-        print("Write: python ex4.py <directory>")
-        sys.exit(1)
+        try:
+            raise ValueError
+        except ValueError:
+            print("Write: python ex4.py <directory>")
+            sys.exit(1)
     directory = sys.argv[1]
+    if not os.path.isdir(directory):
+        try:
+            raise ValueError
+        except ValueError:
+            print("Invalid directory")
+            sys.exit(1)
+
+    if not os.listdir(directory):
+        try:
+            raise ValueError
+        except ValueError:
+            print("Directory is empty")
+            sys.exit(1)
+
     extension_freq = count_files(directory)
     for extension in extension_freq:
         print(extension + ": " + str(extension_freq[extension]))

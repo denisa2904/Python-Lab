@@ -3,12 +3,9 @@ import os
 
 
 def total_size(directory):
-    if not os.path.isdir(directory):
-        print("Invalid directory")
-        sys.exit(1)
 
     size = 0
-    for root, dirs, files in os.walk(directory):
+    for root, _, files in os.walk(directory):
         for file in files:
             try:
                 size += os.path.getsize(os.path.join(root, file))
@@ -21,9 +18,20 @@ def total_size(directory):
 
 def main():
     if len(sys.argv) != 2:
-        print("Write: python ex3.py <directory>")
-        sys.exit(1)
+        try:
+            raise ValueError
+        except ValueError:
+            print("Write: python ex3.py <directory>")
+            sys.exit(1)
+
     directory = sys.argv[1]
+    if not os.path.isdir(directory):
+        try:
+            raise ValueError
+        except ValueError:
+            print("Invalid directory")
+            sys.exit(1)
+
     print(total_size(directory))
 
 
