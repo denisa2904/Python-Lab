@@ -4,7 +4,7 @@
     Usage: python main.py
 """
 import pygame
-from hexagon_matrix import draw_hexagon_matrix
+from game_board import GameBoard
 
 
 LIGHT_GREEN = (43, 175, 98)
@@ -14,6 +14,7 @@ width, height = 900, 700
 
 def main():
     pygame.init()
+    board = GameBoard(11, 11)
 
     screen = pygame.display.set_mode((width, height))
     pygame.display.set_caption("Trap the Mouse")
@@ -23,9 +24,12 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            # if pygame.mouse.get_pressed()[0]:
+            #     x, y = pygame.mouse.get_pos()
+            #     board.element_clicked(x, y)
 
         screen.fill(LIGHT_GREEN)
-        draw_hexagon_matrix(screen, 11, 11)
+        board.draw(screen)
 
         pygame.display.flip()
         pygame.time.Clock().tick(30)
