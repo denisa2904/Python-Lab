@@ -5,7 +5,7 @@ import random
 
 from hexagon import Hexagon
 
-width, height = 900, 700
+WIDTH, HEIGHT = 900, 700
 
 
 class GameBoard:
@@ -47,8 +47,8 @@ class GameBoard:
         """
         for row in range(self.rows):
             for col in range(self.cols):
-                x = col * self.matrix[row][col].width + width * 0.45
-                y = row * self.matrix[row][col].height + height / 10
+                x = col * self.matrix[row][col].width + WIDTH * 0.45
+                y = row * self.matrix[row][col].height + HEIGHT / 10
                 if col % 2 == 1:
                     y += self.matrix[row][col].height / 2
                 self.matrix[row][col].draw(surface, x, y)
