@@ -21,10 +21,10 @@ class Hexagon:
 
     def __init__(self, radius, row, col):
         """
-        Initializes the Hexagon class.
-        :param radius: the radius of the hexagon
-        :param row: the row of the hexagon
-        :param col: the column of the hexagon
+            Initializes the Hexagon class.
+            :param radius: the radius of the hexagon
+            :param row: the row of the hexagon
+            :param col: the column of the hexagon
         """
         self.radius = radius
         self.width = math.sqrt(3) * radius + 1.7
@@ -46,24 +46,24 @@ class Hexagon:
 
     def set_obstacle(self):
         """
-        Sets the hexagon as an obstacle.
-        :return: sets the hexagon as an obstacle
+            Sets the hexagon as an obstacle.
+            :return: sets the hexagon as an obstacle
         """
         self.is_obstacle = True
 
     def set_mouse(self):
         """
-        Sets the hexagon as the mouse.
-        :return: sets the hexagon as the mouse
+            Sets the hexagon as the mouse.
+            :return: sets the hexagon as the mouse
         """
         self.is_mouse = True
 
     def is_inside(self, x, y):
         """
-        Checks if a point is inside the hexagon.
-        :param x: x coordinate of the point
-        :param y: y coordinate of the point
-        :return: True if the point is inside the hexagon, False otherwise
+            Checks if a point is inside the hexagon.
+            :param x: x coordinate of the point
+            :param y: y coordinate of the point
+            :return: True if the point is inside the hexagon, False otherwise
         """
         inside = False
         n = len(self.points)
@@ -80,9 +80,9 @@ class Hexagon:
 
     def draw(self, surface):
         """
-        Draws a hexagon.
-        :param surface: surface of the pygame window
-        :return: draws a hexagon
+            Draws a hexagon.
+            :param surface: surface of the pygame window
+            :return: draws a hexagon
         """
         if self.is_obstacle:
             pygame.draw.polygon(surface, FILL_COLOR_BROWN, self.points, 0)

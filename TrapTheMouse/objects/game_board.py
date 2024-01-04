@@ -22,9 +22,9 @@ class GameBoard:
 
     def __init__(self, rows, cols):
         """
-        Initializes the GameBoard class.
-        :param rows: number of rows
-        :param cols:  number of columns
+            Initializes the GameBoard class.
+            :param rows: number of rows
+            :param cols:  number of columns
         """
         self.rows = rows
         self.cols = cols
@@ -37,8 +37,8 @@ class GameBoard:
 
     def random_obstacles(self):
         """
-        Sets random obstacles on the game board.
-        :return: sets random obstacles on the game board
+            Sets random obstacles on the game board.
+            :return: sets random obstacles on the game board
         """
         n = random.randint(3, 7)
         for i in range(n):
@@ -51,9 +51,9 @@ class GameBoard:
 
     def draw(self, surface):
         """
-        Draws the game board (matrix of hexagons).
-        :param surface: surface of the pygame window
-        :return: draws a matrix of hexagons and a back button
+            Draws the game board (matrix of hexagons).
+            :param surface: surface of the pygame window
+            :return: draws a matrix of hexagons and a back button
         """
         for row in range(self.rows):
             for col in range(self.cols):
@@ -69,13 +69,16 @@ class GameBoard:
 
     def get_hexagon(self, x, y):
         """
-        Gets the hexagon at the given coordinates.
-        :param x: x coordinate of the hexagon
-        :param y: y coordinate of the hexagon
-        :return: the row and column of the hexagon
+            Gets the hexagon at the given coordinates.
+            :param x: x coordinate of the hexagon
+            :param y: y coordinate of the hexagon
+            :return: the row and column of the hexagon
         """
         for row in range(self.rows):
             for col in range(self.cols):
+                if col == 0:
+                    if row % 2 == 0 and x < 337 or row % 2 == 1 and x < 357:
+                        break
                 if self.matrix[row][col].is_inside(x, y):
                     return row, col
         return -1, -1

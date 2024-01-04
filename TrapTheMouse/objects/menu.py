@@ -45,7 +45,6 @@ class Menu:
 
         draw_button(surface, self.second_button, "Play vs Human", (WIDTH / 2 - 75, 310), LIGHT_GREEN, BLACK)
 
-
     def draw_ai_level_selector(self, surface):
         """
             Draws the AI level selector.
