@@ -23,7 +23,7 @@ class Menu:
         self.first_button = pygame.Rect((WIDTH - BUTTON_WIDTH) / 2, 200, BUTTON_WIDTH, BUTTON_HEIGHT)
         self.second_button = pygame.Rect((WIDTH - BUTTON_WIDTH) / 2, 300, BUTTON_WIDTH, BUTTON_HEIGHT)
         self.third_button = pygame.Rect((WIDTH - BUTTON_WIDTH) / 2, 400, BUTTON_WIDTH, BUTTON_HEIGHT)
-        self.background_image = pygame.image.load("images/menu_photo.png")
+        self.background_image = pygame.image.load("public/menu_photo.png")
         self.background_image = pygame.transform.scale(self.background_image, (WIDTH, HEIGHT))
 
     def draw_menu(self, surface):
