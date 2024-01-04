@@ -48,6 +48,11 @@ class Game:
 
         self.mouse_position = (5, 5)
         self.moves = MOVES_ODD_ROW
+        self.ai_levels ={
+            1: self.ai_easy_mouse_move,
+            2: self.ai_medium_mouse_move,
+            3: self.ai_hard_mouse_move
+        }
 
     def check_win(self):
         """
@@ -84,6 +89,20 @@ class Game:
         self.play = False
         self.trapper_turn = True
 
+
+    def mouse_select(self, row, col):
+        """
+        Selects the mouse.
+        :param row: row of the mouse
+        :param col: column of the mouse
+        :return: selects the mouse and updates the mouse position
+        """
+        self.board.matrix[self.mouse_position[0]][self.mouse_position[1]].is_mouse = False
+        self.board.matrix[row][col].set_mouse()
+        self.mouse_position = (row, col)
+        self.trapper_turn = True
+        self.board.trapper_turn = True
+
     def trapper_move(self, x, y):
         """
             Moves for the one who wants to trap the mouse.
@@ -104,19 +123,6 @@ class Game:
         self.board.draw(self.screen)
         if self.check_win():
             return
-
-    def mouse_select(self, row, col):
-        """
-        Selects the mouse.
-        :param row: row of the mouse
-        :param col: column of the mouse
-        :return: selects the mouse and updates the mouse position
-        """
-        self.board.matrix[self.mouse_position[0]][self.mouse_position[1]].is_mouse = False
-        self.board.matrix[row][col].set_mouse()
-        self.mouse_position = (row, col)
-        self.trapper_turn = True
-        self.board.trapper_turn = True
 
     def mouse_move(self, x, y):
         """
@@ -178,7 +184,7 @@ class Game:
         else:
             self.moves = MOVES_EVEN_ROW
         chance = random.randint(1, 10)
-        if chance <= 7:
+        if chance <= 4:
             move = self.random_move()
             row, col = move[0], move[1]
         else:
@@ -291,6 +297,71 @@ class Game:
 
         return distances
 
+    def handle_menu_buttons(self, x, y):
+        """
+            Handles the menu buttons.
+            :param x: x coordinate of the mouse click
+            :param y: y coordinate of the mouse click
+            :return: starts the game with human opponent or opens the AI level selector
+        """
+        if is_button_clicked(x, y, self.menu.first_button):
+            self.selector_active = True
+            self.menu_active = False
+        elif is_button_clicked(x, y, self.menu.second_button):
+            self.reset()
+            self.menu_active = False
+            self.is_human_opponent = True
+            pygame.time.wait(200)
+
+    def handle_selector_buttons(self, x, y):
+        """
+            Handles the AI level selector buttons.
+            :param x: x coordinate of the mouse click
+            :param y: y coordinate of the mouse click
+            :return: sets the AI level according to the button clicked
+        """
+        if is_button_clicked(x, y, self.menu.first_button):
+            self.start_game = True
+            self.selector_active = False
+            self.ai_level = 1
+            pygame.time.wait(200)
+        elif is_button_clicked(x, y, self.menu.second_button):
+            self.start_game = True
+            self.selector_active = False
+            self.ai_level = 2
+            pygame.time.wait(200)
+        elif is_button_clicked(x, y, self.menu.third_button):
+            self.start_game = True
+            self.selector_active = False
+            self.ai_level = 3
+            pygame.time.wait(200)
+
+    def handle_game_buttons(self, x, y):
+        """
+            Handles the game buttons.
+            :param x: x coordinate of the mouse click
+            :param y: y coordinate of the mouse click
+            :return: handles the game buttons
+        """
+        if is_button_clicked(x, y, self.board.back_button):
+            self.back_menu()
+        if is_button_clicked(x, y, self.board.reset_button):
+            self.reset()
+
+    def handle_start_game(self):
+        """
+            Handles the start of the game.
+            :return: opens the game window and draws the game board
+        """
+        self.reset()
+        screen = pygame.display.set_mode((WIDTH, HEIGHT))
+        pygame.display.set_caption("Trap the Mouse")
+        screen.fill(LIGHT_GREEN)
+        self.play = True
+        self.start_game = False
+        self.board.draw(self.screen)
+        pygame.display.flip()
+
     def run(self):
         """
             Runs the game.
@@ -305,36 +376,13 @@ class Game:
                     x, y = pygame.mouse.get_pos()
                     if not self.start_game:
                         if self.menu_active:
-                            if is_button_clicked(x, y, self.menu.first_button):
-                                self.selector_active = True
-                                self.menu_active = False
-                            elif is_button_clicked(x, y, self.menu.second_button):
-                                self.reset()
-                                self.menu_active = False
-                                self.is_human_opponent = True
-                                pygame.time.wait(200)
-                        elif self.selector_active:
-                            if is_button_clicked(x, y, self.menu.first_button):
-                                self.start_game = True
-                                self.selector_active = False
-                                self.ai_level = 1
-                                pygame.time.wait(200)
-                            elif is_button_clicked(x, y, self.menu.second_button):
-                                self.start_game = True
-                                self.selector_active = False
-                                self.ai_level = 2
-                                pygame.time.wait(200)
-                            elif is_button_clicked(x, y, self.menu.third_button):
-                                self.start_game = True
-                                self.selector_active = False
-                                self.ai_level = 3
-                                pygame.time.wait(200)
-                        elif self.play:
-                            if is_button_clicked(x, y, self.board.back_button):
-                                self.back_menu()
-                            if is_button_clicked(x, y, self.board.reset_button):
-                                self.reset()
+                            self.handle_menu_buttons(x, y)
 
+                        elif self.selector_active:
+                            self.handle_selector_buttons(x, y)
+
+                        elif self.play:
+                            self.handle_game_buttons(x, y)
                             if self.trapper_turn:
                                 self.board.trapper_turn = True
                                 self.trapper_move(x, y)
@@ -344,12 +392,8 @@ class Game:
                                     self.mouse_move(x, y)
 
             if not self.is_human_opponent and not self.trapper_turn:
-                if self.ai_level == 1:
-                    self.ai_easy_mouse_move()
-                elif self.ai_level == 2:
-                    self.ai_medium_mouse_move()
-                elif self.ai_level == 3:
-                    self.ai_hard_mouse_move()
+                if self.ai_level in self.ai_levels:
+                    self.ai_levels[self.ai_level]()
 
             if self.selector_active:
                 self.menu.draw_ai_level_selector(self.menu_screen)
@@ -362,14 +406,7 @@ class Game:
                 continue
 
             if self.start_game:
-                self.reset()
-                screen = pygame.display.set_mode((WIDTH, HEIGHT))
-                pygame.display.set_caption("Trap the Mouse")
-                screen.fill(LIGHT_GREEN)
-                self.play = True
-                self.start_game = False
-                self.board.draw(self.screen)
-                pygame.display.flip()
+                self.handle_start_game()
                 continue
 
             if self.play:
