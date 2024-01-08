@@ -222,6 +222,7 @@ class Game:
         self.reset()
         self.menu_active = True
         self.start_game = False
+        self.is_human_opponent = False
         pygame.init()
         self.menu_screen = pygame.display.set_mode((MENU_WIDTH, MENU_HEIGHT))
         pygame.display.set_caption("Trap the Mouse")
