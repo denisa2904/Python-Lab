@@ -9,7 +9,7 @@ BORDER_COLOR_DARK_GREEN = (21, 87, 49)
 FILL_COLOR_GREEN = (32, 131, 74)
 BORDER_COLOR_DARK_BROWN = (135, 62, 35)
 FILL_COLOR_BROWN = '#935139'
-IMAGE = pygame.image.load("public/mouse1.png")
+IMAGE = pygame.image.load("../public/mouse1.png")
 IMAGE_SIZE = (50, 50)
 IMAGE = pygame.transform.scale(IMAGE, IMAGE_SIZE)
 
